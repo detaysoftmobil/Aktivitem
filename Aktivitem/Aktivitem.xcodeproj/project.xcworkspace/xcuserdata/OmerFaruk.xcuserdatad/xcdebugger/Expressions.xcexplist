@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[PermissionAllListViewController permissionOnayRed:]:PermissionAllListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[PermissionAllListDetailViewController viewDidLoad]:PermissionAllListDetailViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "selectedPermission">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[PermissionCreateViewController permissionSave:]:PermissionCreateViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "myPermissionStruct">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
