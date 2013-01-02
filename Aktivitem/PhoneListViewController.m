@@ -186,7 +186,7 @@
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {
-    searchbar.showsCancelButton = NO;
+     searchbar.showsCancelButton = NO;
 }
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
