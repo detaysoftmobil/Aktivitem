@@ -3,9 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[PermissionAllListViewController permissionOnayRed:]:PermissionAllListViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[PermissionAllListDetailViewController viewDidLoad]:PermissionAllListDetailViewController.m">
          <PersistentStrings>
             <PersistentString
@@ -14,12 +11,29 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[PermissionAllListViewController viewDidAppear:]:PermissionAllListViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "array">
+            </PersistentString>
+            <PersistentString
+               value = "[PermissionAllListXMLParser getPermissionAllListXMLParser]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[MenuViewController goToApplication:]:MenuViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[PermissionCreateViewController permissionSave:]:PermissionCreateViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "myPermissionStruct">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[PermissionAllListViewController permissionOnayRed:]:PermissionAllListViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

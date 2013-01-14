@@ -28,12 +28,15 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     BOOL detailPermissionStatus,ustBirimKontrol,onayBtnStatus,modulOpen;;
     
     NSMutableArray *permissionArr;
+    
+    
+    UITabBarItem *tempTabbarItem;
 }
 @end
 
 @implementation PermissionAllListViewController
 
-@synthesize permissionCreateStatus;
+@synthesize permissionCreateStatus,myTableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,21 +53,11 @@ static PermissionAllListViewController *myPermissionAllListViewController;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     ((UITabBarItem*)[self.tabBarController.view viewWithTag:4]).enabled = NO;
-    
+
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Yeni" style:UIBarButtonItemStylePlain target:self action:@selector(createPermission:)];
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-}
-
--(IBAction)createPermission:(id)sender {
-    self.title = @"Geri";
-    PermissionCreateViewController *permissionCreateViewController = [[PermissionCreateViewController alloc]init];
-    [self.navigationController pushViewController:permissionCreateViewController animated:YES];
-}
-
--(IBAction)onayRedPermission:(id)sender {
-
 }
 
 - (void)viewDidUnload
@@ -81,6 +74,9 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         [self tableDefaultSetData];   
     }
     
+    [self setTabbarItemBadgeNumber];
+    [self tabBar:nil didSelectItem:tempTabbarItem];
+            
     if (detailPermissionStatus & ustBirimKontrol) {
         [self onayTableReload];
         detailPermissionStatus = NO;
@@ -92,13 +88,27 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         permissionCreateStatus=@"";
         [self tableDefaultSetData];
     }
-    
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    myPermissionAllListViewController = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+-(IBAction)createPermission:(id)sender {
+    self.title = @"Geri";
+    PermissionCreateViewController *permissionCreateViewController = [[PermissionCreateViewController alloc]init];
+    [self.navigationController pushViewController:permissionCreateViewController animated:YES];
+}
+
+-(IBAction)onayRedPermission:(id)sender {
+    
+}
+
 
 -(void)onayTableReload{
     myCreatePermissionCall = [[PermissionAllListCallXML alloc]init];
@@ -276,6 +286,8 @@ static PermissionAllListViewController *myPermissionAllListViewController;
 #pragma mark -tabbar delegate
 -(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
+    tempTabbarItem = item;
+    
     self.navigationItem.rightBarButtonItem  = nil;
     self.navigationItem.rightBarButtonItems = nil;
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Yeni" style:UIBarButtonItemStylePlain target:self action:@selector(createPermission:)];
@@ -323,8 +335,8 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     }
 }
 
-#pragma mark -private method 
--(void)sortingArray:(NSString*)_Odurm{
+#pragma mark -private method
+-(int)sortingArray:(NSString*)_Odurm{
     [array removeAllObjects];
     for (PermissionStruct *st in [[PermissionAllListXMLParser getPermissionAllListXMLParser] PermissionStructArray]) {
         
@@ -333,9 +345,10 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         }
     }
     [myTableView reloadData];
+    return [array count];
 }
 
--(void)sortingAllArray:(NSString*)_Odurm{
+-(int)sortingAllArray:(NSString*)_Odurm{
     [array removeAllObjects];
     for (PermissionStruct *st in [[PermissionAllListXMLParser getPermissionAllListXMLParser] PermissionStructArray]) {
         
@@ -344,6 +357,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         }
     }
     [myTableView reloadData];
+    return [array count];
 }
 
 #pragma mark private methods
@@ -470,6 +484,21 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     [array insertObject:temp atIndex:([selectedBtn tag] - 10)];
 }
 
+-(void)setTabbarItemBadgeNumber{
+    int resultCount = 0;
+    resultCount = [self sortingArray:@"01"];
+    tb1.badgeValue = resultCount!=0?[NSString stringWithFormat:@"%d",resultCount]:nil;
+    
+    resultCount = [self sortingArray:@"02"];
+    tb2.badgeValue = resultCount!=0?[NSString stringWithFormat:@"%d",resultCount]:nil;
+    
+    resultCount = [self sortingArray:@"03"];
+    tb3.badgeValue = resultCount!=0?[NSString stringWithFormat:@"%d",resultCount]:nil;
+    
+    resultCount = [self sortingAllArray:@"01"];
+    tb4.badgeValue = resultCount!=0?[NSString stringWithFormat:@"%d",resultCount]:nil;
+}
+
 +(PermissionAllListViewController*)getPermissionAllListViewController {
     if (!myPermissionAllListViewController) {
         myPermissionAllListViewController = [[super allocWithZone:NULL]init];
@@ -480,4 +509,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
 +(id)allocWithZone:(NSZone *)zone{
     return [self getPermissionAllListViewController];
 }
+
+
+
 @end

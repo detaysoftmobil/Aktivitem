@@ -12,7 +12,6 @@
 #import "PermissionAllListViewController.h"
 
 @interface MenuViewController (){
-    PermissionAllListViewController *permissionViewController;
 }
 @end
 
@@ -30,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    permissionViewController = [[PermissionAllListViewController alloc] init];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -64,7 +62,7 @@
     
     PhoneListViewController *phoneListViewController;
     MainViewController *mainViewController;
-//    PermissionAllListViewController *permissionViewController;
+    PermissionAllListViewController *permissionViewController;
     
     [self setTitle:@"Geri"];
     
@@ -81,9 +79,9 @@
             [mainViewController release];
             break;
         case 3:
-//            permissionViewController = [[PermissionAllListViewController alloc] init];
+            permissionViewController = [[PermissionAllListViewController alloc] init];
             [self.navigationController pushViewController:permissionViewController animated:YES];
-//            [permissionViewController release];
+            [permissionViewController release];
             break;
         default:
             break;
