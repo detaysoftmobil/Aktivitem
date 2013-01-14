@@ -46,6 +46,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         permissionArr = [[NSMutableArray alloc]init];
         [myTableView setDelegate:self];
         [myTableView setDataSource:self];
+        tempTabbarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemMore tag:1];
     }
     return self;
 }
@@ -187,7 +188,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
         UILabel *lbl_id = [[UILabel alloc]initWithFrame:CGRectMake(5, 12, 40, 20)];
         lbl_id.tag = 100;
         [lbl_id setTextAlignment:UITextAlignmentCenter];
-        [lbl_id setFont:[UIFont boldSystemFontOfSize:11]];
+        [lbl_id setFont:[UIFont fontWithName:@"Arial" size:17]];
         [lbl_id setBackgroundColor:[UIColor clearColor]];
         [cell addSubview:lbl_id];
         [lbl_id release];
@@ -226,7 +227,9 @@ static PermissionAllListViewController *myPermissionAllListViewController;
 
     ((UILabel*)[cell viewWithTag:100]).text = [NSString stringWithFormat:@"%d",indexPath.row+1];
     ((UILabel*)[cell viewWithTag:101]).frame = CGRectMake(50,12, 250, 20);
-    ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"   %@      -     %@",[self getStringToDateFormatter:temp.Begda],[self getStringToDateFormatter:temp.Endda]];
+    ((UILabel*)[cell viewWithTag:101]).text = [NSString stringWithFormat:@"   %@      -     %@",
+                                               [self getStringToDateFormatter:temp.Begda],
+                                               [self getStringToDateFormatter:temp.Endda]];
     ((UILabel*)[cell viewWithTag:102]).hidden = YES;
    
     if (tabBarItemSelectedIndex == 0) {
@@ -340,7 +343,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     [array removeAllObjects];
     for (PermissionStruct *st in [[PermissionAllListXMLParser getPermissionAllListXMLParser] PermissionStructArray]) {
         
-        if ([st.Odurm isEqualToString:_Odurm] & [st.Pernr isEqualToString:[UserControl getPernr]]) {
+        if ([st.Odurm isEqualToString:_Odurm] & ![st.Opernr isEqualToString:[UserControl getPernr]]) {
             [array addObject:st];
         }
     }
@@ -352,7 +355,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     [array removeAllObjects];
     for (PermissionStruct *st in [[PermissionAllListXMLParser getPermissionAllListXMLParser] PermissionStructArray]) {
         
-        if ([st.Odurm isEqualToString:_Odurm] & ![st.Pernr isEqualToString:[UserControl getPernr]]) {
+        if ([st.Odurm isEqualToString:_Odurm] & [st.Opernr isEqualToString:[UserControl getPernr]]) {
             [array addObject:st];
         }
     }
