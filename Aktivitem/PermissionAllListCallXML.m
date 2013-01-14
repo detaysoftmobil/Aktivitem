@@ -44,65 +44,43 @@
     NSString *soapMessage =[NSString stringWithFormat:@"<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:sap-com:document:sap:soap:functions:mc-style\">"
                             "<soapenv:Header/>"
                             "<soapenv:Body>"
-                            "<urn:_-dsl_-izinF00104>"
+                            "<urn:_-dsl_-izinF00116>"
                             "<ISdurm></ISdurm>"
                             "<IUname>%@</IUname>"
                             "<SItems>"
                             "<item>"
-                            "<Mandt>%@</Mandt>"
-                            "<Pernr>%@</Pernr>"
-                            "<Begda>%@</Begda>"
-                            "<Endda>%@</Endda>"
-                            "<Beguz>%@</Beguz>"
-                            "<Enduz>%@</Enduz>"
-                            "<Ename>%@</Ename>"
-                            "<Iztip>%@</Iztip>"
-                            "<Sure>%@</Sure>"
-                            "<Iztur>%@</Iztur>"
-                            "<Odurm>%@</Odurm>"
-                            "<Opernr>%@</Opernr>"
-                            "<Oname>%@</Oname>"
-                            "<Acik1>%@</Acik1>"
-                            "<Acik2>%@</Acik2>"
-                            "<Acik3>%@</Acik3>"
-                            "<Acik4>%@</Acik4>"
-                            "<Acik5>%@</Acik5>"
-                            "<Aciklama>%@</Aciklama>"
-                            "<TlpYapan>%@</TlpYapan>"
-                            "<TlpTrh>%@</TlpTrh>"
-                            "<Application>%@</Application>"
-                            "<Rednedeni>%@</Rednedeni>"
+                            "<Mandt></Mandt>"
+                            "<Pernr></Pernr>"
+                            "<Begda></Begda>"
+                            "<Endda></Endda>"
+                            "<Beguz></Beguz>"
+                            "<Enduz></Enduz>"
+                            "<Ename></Ename>"
+                            "<Iztip></Iztip>"
+                            "<Sure></Sure>"
+                            "<Iztur></Iztur>"
+                            "<Odurm></Odurm>"
+                            "<Opernr></Opernr>"
+                            "<Oname></Oname>"
+                            "<Acik1></Acik1>"
+                            "<Acik2></Acik2>"
+                            "<Acik3></Acik3>"
+                            "<Acik4></Acik4>"
+                            "<Acik5></Acik5>"
+                            "<Aciklama></Aciklama>"
+                            "<TlpYapan></TlpYapan>"
+                            "<TlpTrh></TlpTrh>"
+                            "<Application></Application>"
+                            "<Rednedeni></Rednedeni>"
                         "</item>"
                     "</SItems>"
-                "</urn:_-dsl_-izinF00104>"
+                "</urn:_-dsl_-izinF00116>"
             "</soapenv:Body>"
-      "</soapenv:Envelope>",userName,
-                            _permission.Mandt,
-                            _permission.Pernr,
-                            _permission.Begda,
-                            _permission.Endda,
-                            _permission.Beguz,
-                            _permission.Enduz,
-                            _permission.Ename,
-                            _permission.Iztip,
-                            _permission.Sure,
-                            _permission.Iztur,
-                            _permission.Odurm,
-                            _permission.Opernr,
-                            _permission.Oname,
-                            _permission.Acik1,
-                            _permission.Acik2,
-                            _permission.Acik3,
-                            _permission.Acik4,
-                            _permission.Acik5,
-                            _permission.Aciklama,
-                            _permission.TlpYapan,
-                            _permission.TlpTrh,
-                            _permission.Application,
-                            _permission.Rednedeni];
+      "</soapenv:Envelope>",userName];
 	
     NSLog(@"%@",soapMessage);
-	NSURL *url = [NSURL URLWithString:@"http://dtyqrt.detay.com:8005/sap/bc/srt/rfc/dsl/izin_f001_04/100/izin_f001_04/izin_f001_04"];
+	NSURL *url = [NSURL URLWithString:@"http://hercules.detay.com:8001/sap/bc/srt/rfc/dsl/izin_f001_16/100/izin_f001_16/dsl/izin_f001_16"];
+ 
 	NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:url];
 	NSString *msgLength = [NSString stringWithFormat:@"%d", [soapMessage length]];
 	
@@ -164,8 +142,8 @@
     if(count >= 2){
         [connection release];
     } else {
-        NSString *uName = @"p0557";
-        NSString *password = @"123456";
+        NSString *uName = [UserControl getUsername];
+        NSString *password = [UserControl getPassword];
         NSURLCredential* credential = [NSURLCredential credentialWithUser:uName password:password persistence:NSURLCredentialPersistenceForSession];
         [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
     }
