@@ -31,8 +31,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
-    
     for (int i=0; i < [[PhoneInfo PhoneListArray] count]; i++) {
         phoneInfo = [[PhoneInfo PhoneListArray] objectAtIndex:i];
         if (pernr == [phoneInfo.personel intValue]) {

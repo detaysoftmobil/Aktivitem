@@ -34,7 +34,7 @@
     success = [parser parse];
 	
     currentString = nil;
-    [parser release];
+//    [parser release];
     
     return responseMessage;
     

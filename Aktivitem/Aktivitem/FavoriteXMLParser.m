@@ -37,7 +37,7 @@
     success = [parser parse];
 	
     currentString = nil;
-    [parser release];
+//    [parser release];
     
     // Handling if there is no connection
     if ([getXml isEqualToString:@"90"] || [getXml isEqualToString:@""]) {
@@ -181,7 +181,7 @@
         favoriInfo.projectName = projectName;
         favoriInfo.fid = index;
         [[FavoriInfo favoriArray] addObject:favoriInfo];
-        [favoriInfo release];
+//        [favoriInfo release];
         NSLog(@"%d",index);
         
     }
@@ -257,7 +257,7 @@
         locationInfo.brdge = brdge;
         locationInfo.ID = index;
         [[FavoriInfo locationArray] addObject:locationInfo];
-        [locationInfo release];
+//        [locationInfo release];
         NSLog(@"%d",index);
         
         

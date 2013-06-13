@@ -144,8 +144,8 @@
     if(count >= 2){
         [connection release];
     } else {
-        NSString *uName = @"p0557";
-        NSString *password = @"123456";
+        NSString *uName = [UserControl getUsername];
+        NSString *password = [UserControl getPassword];
         NSURLCredential* credential = [NSURLCredential credentialWithUser:uName password:password persistence:NSURLCredentialPersistenceForSession];
         [[challenge sender] useCredential:credential forAuthenticationChallenge:challenge];
     }

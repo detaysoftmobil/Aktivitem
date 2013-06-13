@@ -104,6 +104,7 @@ static PermissionAllListViewController *myPermissionAllListViewController;
     self.title = @"Geri";
     PermissionCreateViewController *permissionCreateViewController = [[PermissionCreateViewController alloc]init];
     [self.navigationController pushViewController:permissionCreateViewController animated:YES];
+    [permissionCreateViewController release];
 }
 
 -(IBAction)onayRedPermission:(id)sender {
