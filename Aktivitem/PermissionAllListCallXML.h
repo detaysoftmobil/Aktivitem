@@ -15,4 +15,5 @@
 
 -(NSString*)callXML:(PermissionStruct*)_permission;
 -(void)getXML:(PermissionStruct*)_permission;
+//as
 @end
